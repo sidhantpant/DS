@@ -2,25 +2,28 @@ package com.practice.datastructures.recursion.assignment;
 
 public class Solution1 {
 
-    private static int solve(int A) {
-        while (A >= 10){
-            A = sum(A);
-        }
-        if(A == 1){
+
+    public int solve(String A) {
+        int s = 0;
+        int e = A.length() - 1;
+        if (isPalindrome(A, s, e)) {
             return 1;
         }
         return 0;
+
     }
 
-    private static int sum(int A) {
-        if( A == 0){
-            return 0;
+    boolean isPalindrome(String A, int s, int e) {
+
+        if (s >= e) {
+            return true;
         }
-        int num = A % 10;
-        return num + sum(A/10);
-    }
+        s++;
+        e--;
+        if (A.charAt(s) == A.charAt(e) && isPalindrome(A, s, e)) {
+            return true;
+        }
+        return false;
 
-    public static void main(String[] args) {
-        System.out.println(solve(1291));
     }
 }

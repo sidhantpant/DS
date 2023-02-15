@@ -1,10 +1,35 @@
 package com.practice.datastructures.sorting.assignment;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class Solution4 {
 
     private static int[] solve(int[] A) {
+        int N = A.length;
+        Integer[] integArray = new Integer[N];
+        for (int i = 0; i < N; i++) {
+            integArray[i] = A[i];
+        }
+        Arrays.sort(integArray, (o1, o2) -> {
+            int fa = factors(o1);
+            int fb = factors(o2);
+            if(fa == fb){
+                return 0;
+            } else if (fa<fb) {
+                return -1;
+            }else{
+                return 1;
+            }
+        });
+        for (int i = 0; i < N; i++) {
+            A[i] = integArray[i];
+        }
+
+        return A;
+    }
+
+    public int[] solve1(int[] A) {
         int N = A.length;
         Arrays.sort(A);
         for (int i = 0; i < N; i++) {
@@ -14,7 +39,6 @@ public class Solution4 {
                 }
             }
         }
-
         return A;
     }
 

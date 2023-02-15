@@ -1,4 +1,4 @@
-package com.practice.datastructures.recursion.assignment;
+package com.practice.datastructures.recursion;
 
 public class Solution4 {
 
