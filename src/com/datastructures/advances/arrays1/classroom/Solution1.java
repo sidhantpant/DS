@@ -6,13 +6,69 @@ public class Solution1 {
 
         int N = A.length;
         int maxSum = 0;
+        int count =0 ;
         for (int i = 0; i < N; i++) {
             int currSum = 0;
             for (int j = i; j < N; j++) {
+                count++;
                 currSum = printSum(A, i, j);
                 maxSum = Math.max(currSum, maxSum);
             }
 
+        }
+        System.out.println("count1 =" +count);
+        return maxSum;
+    }
+
+    static int sumBF(int[] A){
+
+        int N = A.length;
+        int maxSum =0 ;
+        int count = 0;
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j <= i; j++) {
+                int sum =0 ;
+                count++;
+                System.out.println( "i = " +i +"-> j="+j);
+                for (int k = j; k <= i ; k++) {
+                    sum = sum+A[k];
+                    maxSum = Math.max(maxSum,sum);
+                }
+            }
+        }
+        System.out.println("count2 =" +count);
+        return maxSum;
+    }
+
+    static int sumPS(int[] A){
+
+        int N = A.length;
+        int[] PS = new int[N+1];
+        PS[0] = 0;
+        int maxSum = 0 ;
+        for (int i = 1; i < N+1; i++) {
+            PS[i] = PS[i-1] + A[i-1];
+        }
+
+        for (int i = 0; i < N; i++) {
+            for (int j = i; j < N; j++) {
+                int sum = PS[j+1] - PS[i];
+                maxSum = Math.max(sum,maxSum);
+            }
+        }
+        return maxSum;
+    }
+
+    static int kadanes(int[] A){ // -20 10 -10 3   // 0
+        int N = A.length;
+        int maxSum = A[0];
+        int currSum = A[0];
+        for (int i = 1; i < N; i++) {
+            if(currSum < 0){
+                currSum = 0;
+            }
+            currSum = currSum + A[i];
+            maxSum = Math.max(currSum,maxSum);
         }
         return maxSum;
     }
@@ -77,9 +133,12 @@ public class Solution1 {
     public static void main(String[] args) {
         int[] A = {-10,4,5,-1,2,-6};
 //        System.out.println(sum(A));
-        System.out.println(sumPrefixSum(A));
-        System.out.println(sumCarryForwardSum(A));
-        System.out.println(sumKadanesOptimised(A));
+        System.out.println(sumBF(A));
+        System.out.println(sumBruteForce(A));
+        System.out.println(kadanes(A));
+//        System.out.println(sumPrefixSum(A));
+//        System.out.println(sumCarryForwardSum(A));
+//        System.out.println(sumKadanesOptimised(A));
 
     }
 }

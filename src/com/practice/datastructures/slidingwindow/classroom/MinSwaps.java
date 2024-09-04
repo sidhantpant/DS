@@ -1,5 +1,8 @@
 package com.practice.datastructures.slidingwindow.classroom;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class MinSwaps {
 
     private static void minSwapsBruteForce(int[] A, int B) {

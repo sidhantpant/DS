@@ -22,6 +22,27 @@ public class Solution3 {
         return rangeSum;
     }
 
+    public long[] rangeSum2(int[] A , int[][] B){
+        int N = A.length;
+
+        //create the ps
+        long[] PS = new long[ N + 1 ];
+        PS[0] = 0;
+        for( int i = 1; i < N + 1; i++ ) {
+            PS[ i ] = PS[ i - 1 ] + A[ i - 1 ];// 0 1 3 6 10 15
+        }
+        int rows = B.length;
+        long[] range = new long[ rows ];
+
+        for( int i = 0; i < rows; i++ ) {
+            int start = B[i][ 0 ];
+            int end = B[i][ 1 ];
+            long rangeSum = PS[ end+1 ] - PS[ start ];
+            range[ i ] = rangeSum;
+        }
+        return range;
+    }
+
     private static int[] prefix(int[] A) {
         int N = A.length;
         int[] prefix = new int[N];

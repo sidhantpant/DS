@@ -15,6 +15,9 @@ public class Solution4 {
 
     public static void main(String[] args) {
         int[]  A= {1,2,3,4,5};
-        reverseFormArray(A);
+        int[] B = reverseFormArray(A);
+        for(int i = 0 ; i < B.length;i++){
+            System.out.println(B[i]);
+        }
     }
 }

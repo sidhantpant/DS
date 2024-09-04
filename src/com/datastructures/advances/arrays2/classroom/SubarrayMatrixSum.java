@@ -1,5 +1,7 @@
 package com.datastructures.advances.arrays2.classroom;
 
+import com.datastructures.advances.tries1.classroom.Node;
+
 public class SubarrayMatrixSum {
 
     int modNum = 1000000007;
@@ -85,6 +87,57 @@ public class SubarrayMatrixSum {
 
         return subMatSum;
     }
+
+    private static void sumAllSubmatrixBruteForce(int[][] A) {
+
+        int M = A.length;
+        int N = A[0].length;
+
+        int sum = 0 ;
+        int ans = 0 ;
+        for (int i = 0; i < M; i++) {
+            for (int j = 0; j < N; j++) {
+                // TL -> i,j  00 01  // start
+                for (int p = i; p < M; p++) {
+                    for (int q = j; q < N; q++) {
+                        // BR -> p,q // end
+                        for (int row = i; row <= p; row++) {
+                            for (int col = j; col <= q; col++) {
+                                sum +=  A[row][col];
+                                System.out.println("sum" +sum);
+                                ans = Math.max(ans , sum);
+//                                System.out.print("[" + row + " " + col + "]");
+                            }
+                        }
+                        System.out.println();
+                    }
+                }
+                System.out.println("==="+ans);
+            }
+        }
+    }
+
+    int sumContributionTechnique(int[][] A){
+        //no of submatrix containing (x,y) = count of possible TL * count of possible BR
+        // count of possible TL = (x+1)*(y+1) => in [3][3] matrix that would be (2+1)*(2+1)
+        //count of possible BR from (x,y) to (n-1,n-1) = (N-1-x+1)(N-1-y+1) = (N-x)*(N-y)
+        int sum = 0;
+        int N = A.length;
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                sum += A[i][j] * ((i+1)*(j+1) * (N-i)*(N-j));
+            }
+        }
+        return sum;
+    }
+
+    public static void main(String[] args) {
+        int[][] A = {{1,2,3},{4,5,6},{7,8,9}};
+        SubarrayMatrixSum sum = new SubarrayMatrixSum();
+        sum.sumAllSubmatrixBruteForce(A);
+//        System.out.println(sum.sumContributionTechnique(A));
+    }
+
 
 
 }

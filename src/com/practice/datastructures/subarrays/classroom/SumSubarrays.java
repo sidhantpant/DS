@@ -41,7 +41,6 @@ public class SumSubarrays {
         for (int i = 0; i < N; i++) {
             int sum = 0;
             for (int j = i; j < N; j++) {
-                sum = sum + A[j];
                 System.out.print(sum + " ");
             }
             System.out.println();

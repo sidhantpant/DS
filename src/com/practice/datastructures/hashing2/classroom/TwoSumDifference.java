@@ -21,6 +21,11 @@ public class TwoSumDifference {
 
     }
 
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
     private static int twoSumDifference(int[] A, int K) {
 
         int N = A.length;

@@ -60,6 +60,7 @@ public class Solution6 {
             int end = B[i][1];
             total[i] = PS[end] - PS[start - 1];
         }
+        int r = B[0].length;
         return total;
     }
 

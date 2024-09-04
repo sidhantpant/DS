@@ -34,7 +34,7 @@ public class TwoSumSubarray {
     }
 
     public static void main(String[] args) {
-        int[] A1 = {5, 10, 20, 100, 105};
+        int[] A1 = {5, 10, 20, 100, 105};// 0 5 15 35 135 240
         int[] A = {1, 2, 3, 4, 5};
         System.out.println(twoSumSubarray(A, 19));
     }

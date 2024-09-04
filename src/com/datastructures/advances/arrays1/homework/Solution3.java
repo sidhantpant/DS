@@ -36,8 +36,44 @@ public class Solution3 {
         return pair;
     }
 
+    static int[] flipKadanesWorking(String S){
+        int N = S.length();
+        int[] A = new int[N];
+        for (int i = 0; i < N; i++) {
+            if(S.charAt(i) == '1'){
+                A[i] = -1;
+            }else if( S.charAt(i) == '0'){
+                A[i] = 1;
+            }
+        }
+        int curr_sum = 0;
+        int max_sum = 0;
+        int l = 0 ;
+        int r = -1;
+        int idx = 0;
+        for (int i = 0; i < N; i++) {
+            curr_sum = curr_sum + A[i];
+            if(curr_sum < 0 ){
+                curr_sum = 0 ;
+                idx = idx+1;
+            }else if(curr_sum > max_sum){
+                l = idx;
+                r = i;
+                max_sum = curr_sum;
+            }
+        }
+        if( r != -1){
+            return new int[]{l+1,r+1};
+        }else{
+            return new int[]{};
+        }
+    }
+
     public static void main(String[] args) {
-        System.out.println(flipKadanes("010"));
+        System.out.println(flipKadanesWorking("1000010001"));
+        //1000010001
+        //0111100001
+        //1111101111
     }
 
 }

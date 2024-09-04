@@ -39,9 +39,6 @@ public class Solution5 {
         for (int i : arr1) {
             System.out.print(i + ",");
         }
-
-
-
     }
 }
 

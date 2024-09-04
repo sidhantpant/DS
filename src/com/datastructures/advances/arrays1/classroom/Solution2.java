@@ -7,7 +7,6 @@ public class Solution2 {
             int index = Q[i][0];
             int val = Q[i][1];
             A[index] = val;
-
         }
         int N = A.length;
         A[0] = 0;
@@ -17,11 +16,25 @@ public class Solution2 {
         return A;
     }
 
+    static int[] sumBF(int[] A ,int[][] Q){
+        int N = Q.length;
+        int M = A.length;
+        for (int i = 0; i < N; i++) {
+            int idx = Q[i][0];
+            int val = Q[i][1];
+            for (int j = idx; j < M ; j++) {
+                A[j] = A[j] + val;
+            }
+        }
+        return A;
+    }
+
     public static void main(String[] args) {
         int[] A = {0, 0, 0, 0, 0, 0, 0};
         int[][] Q = {{1, 3}, {4, 2}, {2, 1}};
         // 0 3 1 0 2 0 0
-        sum(A, Q);
+//        sum(A, Q);
+        sumBF(A, Q);
     }
 
 }

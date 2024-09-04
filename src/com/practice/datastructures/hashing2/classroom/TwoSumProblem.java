@@ -19,7 +19,8 @@ public class TwoSumProblem {
     }
 
     private static boolean twoSumOptimisedFailed(int[] A, int K) {
-        // this will fail for duplicates like 15+15=30,since set will eliminate other 15.
+        // this will fail for conditions like i!=j.e.b 14 ,(14-7=7) will be present in set and returns true
+        // 2 7 11 15 15
         int N = A.length;
         Set<Integer> integerSet = new HashSet<>();
         for (int i = 0; i < N; i++) {
@@ -34,7 +35,7 @@ public class TwoSumProblem {
     }
 
     private static boolean twoSumOptimisedPassing(int[] A, int K) {
-
+        // 1 15 7 11 2 15  =>13
         int N = A.length;
         Set<Integer> integerSet = new HashSet<>();
         for (int i = 0; i < N; i++) {

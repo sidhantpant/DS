@@ -1,5 +1,9 @@
 package com.datastructures.advances.arrays3.classroom;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class DateTime2 {
 
     private static void overlappingTime(int[] S, int[] E, int SNew, int ENew) {
@@ -16,13 +20,40 @@ public class DateTime2 {
         }
     }
 
+    private static List<Interval> mergeInterval(List<Interval> S, Interval newInterval){
+        int N= S.size();
+        List<Interval> result = new ArrayList<>();
+        int Scurr = newInterval.start;//1
+        int Ecurr = newInterval.end;//6
+        for(int i = 0 ; i < N;i++ ){
+            int Si = S.get(i).start; //6
+            int Ei = S.get(i).end; // 9
+            if(Scurr <= Ei && Ecurr >= Si){
+                newInterval.start = Math.min(Scurr,Si);
+                newInterval.end = Math.max(Ecurr,Ei);
+                System.out.println(newInterval.start + "" + newInterval.end);
+            }else{
+                result.add(S.get(i));
+            }
+        }
+        result.add(newInterval);
+        return result;
+    }
+
     public static void main(String[] args) {
         int[] S = {1,6};
         int[] E = {3,9};
         overlappingTime(S, E, 2, 5);
+        List<Interval> intervals = Arrays.asList(new Interval(1,3),new Interval(6,9));
+        Interval interval = new Interval(2,5);
+        System.out.println(mergeInterval(intervals,interval));
     }
 }
-        // 1 2 3 4 5 6 7 8 9
-        // ----
-        //           -------
-        //    ------
+
+class Interval{
+    int start;
+    int end;
+    Interval() { start = 0; end = 0; }
+    Interval(int s, int e) { start = s; end = e; }
+
+}

@@ -42,14 +42,15 @@ public class Solution1 {
 
             if ((i == 0 && j == 0) || (p == 0 & q == 0)) {
                 sum = PSC[p][q];
-            } else if (i == 0 || p == 0) {
+            } else if (i == 0 ) {
                 sum = PSC[p][q] - PSC[p][j - 1];
-            } else if (j == 0 || q == 0) {
+            } else if (j == 0 ) {
                 sum = PSC[p][q] - PSC[i - 1][q];
             } else {
                 sum = PSC[p][q] - PSC[p][j - 1] - PSC[i - 1][q] + PSC[i - 1][j - 1];
             }
             Z[k] = sum;
+            System.out.println("Post Sum"+sum);
 
             // m i n j
         }
@@ -58,30 +59,6 @@ public class Solution1 {
         //    1,0  1,1  1,2
         //    2,0  2,1  2,2
 
-    }
-
-    private static void sumAllSubmatrixBruteForce(int[][] A) {
-
-        int M = A.length;
-        int N = A[0].length;
-
-        for (int i = 0; i < M; i++) {
-            for (int j = 0; j < N; j++) {
-                // TL -> i,j  00 01  // start
-                for (int p = i; p < M; p++) {
-                    for (int q = j; q < N; q++) {
-                        // BR -> p,q // end
-                        for (int row = i; row <= p; row++) {
-                            for (int col = j; col <= q; col++) {
-                                System.out.print("[" + row + " " + col + "]");
-                            }
-                        }
-                        System.out.println();
-                    }
-                }
-                System.out.println("===");
-            }
-        }
     }
 
     private static int printSum(int[] A, int s, int e) {
@@ -95,16 +72,18 @@ public class Solution1 {
 
 
     public static void main(String[] args) {
-        int[][] Q = {{5, 17, 100, 11}, {0, 0, 2, 8}};
+//        int[][] Q = {{5, 17, 100, 11}, {0, 0, 2, 8}};
 //        sumAllSubMatrix(Q);
         int[][] A = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
         int[] B = {1, 1};
-        int[] C = {1, 4};
+        int[] C = {3, 3};
         int[] D = {2, 2};
-        int[] E = {2, 4};
+        int[] E = {3, 3};
 
-        System.out.println(sumAllSubMatrix(Q, B, C, D, E));
+        System.out.println(sumAllSubMatrix(A, B, C, D, E));
     }
-
+    // 1 3 6    // 1  3   6
+    // 4 9 15   // 5  12  21
+    // 7 15 24  // 12 27  45
 
 }
