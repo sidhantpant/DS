@@ -1,4 +1,4 @@
-package com.interview.datastructures.linkedlist.assignment;
+package com.interview.datastructures.intermediate.linkedlist.assignment;
 
 public class Node {
 
